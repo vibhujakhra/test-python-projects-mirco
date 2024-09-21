@@ -1,9 +1,6 @@
 # python base image + all requirements
 FROM registry.gitlab.renewbuy.in/sleep/go-pybentobox:latest
 
-#maintainer
-LABEL Author="Gagandeep"
-
 # The enviroment variable ensures that the python output is set straight
 # to the terminal with out buffering it first
 ENV PYTHONBUFFERED 1
