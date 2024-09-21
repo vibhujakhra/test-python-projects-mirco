@@ -1,0 +1,14 @@
+version: '2.1'
+
+services:
+  cabinet:
+    image: registry.gitlab.renewbuy.in/sleep/cabinet:latest
+    env_file:
+        - .env
+    command: ./initiate_app.sh
+    ports:
+      - "10011:8000"
+
+networks:
+  sleep-network:
+    external: true

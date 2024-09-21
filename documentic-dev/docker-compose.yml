@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  documentic:
+    build: .
+    env_file:
+      - .env
+    volumes:
+      - /var/log/sleep:/var/log/sleep
+    command: ./initiate_app.sh
+    ports:
+      - "10008:8000"
+
+networks:
+  default:
+    external:
+      name: sleep-network

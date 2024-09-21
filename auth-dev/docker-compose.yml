@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  auth:
+    build: .
+    env_file:
+      - .env
+    command: ./initiate_app.sh
+    volumes:
+      - ./migrations:/code/migrations
+      - /var/log/sleep:/var/log/sleep
+    ports:
+      - "10012:8000"
+
+networks:
+  default:
+    external:
+      name: sleep-network

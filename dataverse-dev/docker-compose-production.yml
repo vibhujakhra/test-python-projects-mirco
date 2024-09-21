@@ -1,0 +1,17 @@
+version: '2.1'
+
+services:
+  dataverse:
+    image: registry.gitlab.renewbuy.in/sleep/dataverse:latest
+
+    env_file:
+        - .env
+    command: bash initiate_app.sh
+    volumes:
+      - ./migrations:/code/migrations
+    ports:
+      - "10001:8000"
+
+networks:
+  sleep-network:
+    external: true

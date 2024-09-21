@@ -1,0 +1,21 @@
+version: '2.1'
+
+services:
+  aryabhatta:
+    image: registry.gitlab.renewbuy.in/sleep/aryabhatta:latest
+    networks:
+      -  sleep-network
+    env_file:
+      - .env
+    command: bash initiate_app.sh
+    volumes:
+      - ./migrations:/code/migrations
+      - /var/log/sleep:/var/log/sleep
+    ports:
+      - "10004:8000"
+
+networks:
+  sleep-network:
+  #default:
+    external: true
+      # name: sleep-network

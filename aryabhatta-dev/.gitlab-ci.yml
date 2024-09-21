@@ -1,0 +1,15 @@
+stages:
+  - build
+
+build:
+  stage: build
+  image: docker:latest
+  services:
+    - name: docker:dind
+  before_script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+  script:
+    - docker build -t $CI_REGISTRY_IMAGE:${CI_COMMIT_BRANCH}-$(date +%Y.%m.%d.%H) .
+    - docker push $CI_REGISTRY_IMAGE:${CI_COMMIT_BRANCH}-$(date +%Y.%m.%d.%H)
+    - docker tag $CI_REGISTRY_IMAGE:${CI_COMMIT_BRANCH}-$(date +%Y.%m.%d.%H) $CI_REGISTRY_IMAGE:latest
+    - docker push $CI_REGISTRY_IMAGE:latest

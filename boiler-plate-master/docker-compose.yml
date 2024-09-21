@@ -1,0 +1,17 @@
+version: '2.1'
+
+services:
+  muneem:
+    build:
+      context: .
+      network: sleep-network
+    env_file:
+      - .env
+    command: ./initiate_app.sh
+    ports:
+      - "19991:8000"
+
+networks:
+  default:
+    external:
+      name: sleep-network

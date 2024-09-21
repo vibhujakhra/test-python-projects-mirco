@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  communication:
+    build: .
+    image: rb/comm-service
+    command: ./initiate_app.sh
+    volumes:
+      - ./migrations:/code/migrations
+      - /var/log/sleep:/var/log/sleep
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "10020:8000"
+
+  worker:
+    container_name: comm_worker
+    build: .
+    image: rb/comm-service
+    command: python -m app.worker.consumer
+    restart: always
+    env_file:
+      - .env
+
+
+networks:
+  default:
+    external:
+      name: sleep-network

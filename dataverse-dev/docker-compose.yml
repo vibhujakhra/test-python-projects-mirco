@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  dataverse:
+    build: .
+    env_file:
+      - .env
+    command: bash initiate_app.sh
+    volumes:
+      - ./migrations:/code/migrations
+      - /var/log/sleep:/var/log/sleep
+    ports:
+      - "10001:8000"
+
+networks:
+  default:
+    external:
+      name: sleep-network

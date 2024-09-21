@@ -1,0 +1,14 @@
+version: '2.1'
+
+services:
+  muneem:
+    image: registry.gitlab.renewbuy.in/sleep/muneem:latest
+    env_file:
+      - .env
+    command: ./initiate_app.sh
+    ports:
+      - "10005:8000"
+
+networks:
+  sleep-network:
+    external: true

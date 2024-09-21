@@ -1,0 +1,15 @@
+version: '2.1'
+
+services:
+  documentic:
+    image: registry.gitlab.renewbuy.in/sleep/documentic:latest
+    env_file:
+      - .env
+    command: ./initiate_app.sh
+    ports:
+      - "10008:8000"
+
+
+networks:
+  sleep-network:
+    external: true

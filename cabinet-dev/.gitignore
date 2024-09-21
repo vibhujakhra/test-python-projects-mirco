@@ -1,0 +1,18 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+.idea
+results.xml
+.coverage
+coverage.xml
+
+# staticfiles
+staticfiles/
+
+# Local configuration files
+.env
+.isort.cfg
+.vscode/
+
+# Pytest cache files
+.pytest_cache

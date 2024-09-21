@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  communication:  
+    image: registry.gitlab.renewbuy.in/sleep/communication_service:latest
+    command: ./initiate_app.sh
+    volumes:
+      - /var/log/comm_service:/var/log/quotes-service
+    restart: always
+    env_file:
+        - .env
+    ports:
+      - "10020:8000"
+
+  worker:
+    container_name: comm_worker
+    image: registry.gitlab.renewbuy.in/sleep/communication_service:latest
+    command: python -m app.worker.consumer
+    restart: always
+    env_file:
+      - .env
+
+
+networks:
+  sleep-network:
+    external: true
